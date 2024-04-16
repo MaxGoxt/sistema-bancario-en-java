@@ -38,6 +38,9 @@ public class Login extends javax.swing.JPanel {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 emailFocusGained(evt);
             }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                emailFocusLost(evt);
+            }
         });
 
         emailErr.setBackground(new java.awt.Color(255, 63, 65));
@@ -54,10 +57,8 @@ public class Login extends javax.swing.JPanel {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 senhaFocusGained(evt);
             }
-        });
-        senha.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                senhaActionPerformed(evt);
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                senhaFocusLost(evt);
             }
         });
 
@@ -119,9 +120,19 @@ public class Login extends javax.swing.JPanel {
         this.senha.setText("");
     }//GEN-LAST:event_senhaFocusGained
 
-    private void senhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_senhaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_senhaActionPerformed
+    private void emailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_emailFocusLost
+        if (this.email.getText().isBlank()) {
+            this.email.setText("abner@gmail.com");
+            this.email.setForeground(gris);
+        }
+    }//GEN-LAST:event_emailFocusLost
+
+    private void senhaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_senhaFocusLost
+        if (this.getSenha().isBlank()) {
+            this.senha.setText("           ");
+            this.senha.setForeground(gris);
+        }
+    }//GEN-LAST:event_senhaFocusLost
 
     public String getEmail() {
         return this.email.getText();
@@ -136,8 +147,6 @@ public class Login extends javax.swing.JPanel {
         if (email.isBlank() || this.email.getForeground() == gris) {
             this.emailErr.setVisible(true);
             this.emailErr.setText("Campo obligatorio");
-            this.email.setText("abner@gmail.com");
-            this.email.setForeground(gris);
             return false;
         }
 
@@ -153,12 +162,8 @@ public class Login extends javax.swing.JPanel {
     }
 
     public Boolean checkSenha() {
-        String senha = String.valueOf(this.senha.getPassword());
-
-        if (senha.isBlank()) {
+        if (this.getSenha().isBlank()) {
             this.senhaErr.setVisible(true);
-            this.senha.setText("           ");
-            this.senha.setForeground(gris);
             this.senhaErr.setText("Campo obligatorio");
             return false;
         }

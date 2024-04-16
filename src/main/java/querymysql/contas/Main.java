@@ -2,6 +2,7 @@ package querymysql.contas;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.event.KeyEvent;
 import java.util.HashMap;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -225,6 +226,9 @@ public class Main extends javax.swing.JFrame {
         System.out.println("aaaa");
     }//GEN-LAST:event_iniciarSsKeyPressed
 
+    private void keyListener(KeyEvent evt){
+        System.out.println(evt.getKeyCode());
+    }
     public void showLG() {
         this.lg.setSize(472, 254);
         this.container.removeAll();

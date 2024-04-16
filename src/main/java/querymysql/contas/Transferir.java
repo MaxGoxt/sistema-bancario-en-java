@@ -18,6 +18,7 @@ public class Transferir extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setVisible(true);
         this.cantErr.setVisible(false);
+        this.setDefaultCloseOperation(1);
     }
 
     @SuppressWarnings("unchecked")
