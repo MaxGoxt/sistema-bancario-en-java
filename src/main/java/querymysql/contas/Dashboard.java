@@ -137,18 +137,18 @@ public class Dashboard extends javax.swing.JFrame {
     private void depositarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_depositarMouseClicked
         // TODO add your handling code here:
         try {
-            Float cant = Float.parseFloat(JOptionPane.showInputDialog("Insira a quantidade a depositar"));
+            Float cant = Float.parseFloat(JOptionPane.showInputDialog("Indique la cantidade a depositar"));
             if (cant > 0) {
                 String res = SQLService.setSaldo(this.id, this.saldo_ + cant);
                 if (res == "ok") {
                     setSaldo(this.saldo_ + cant);
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "o valor deve ser maior a 0", "", 0);
+                JOptionPane.showMessageDialog(null, "El valor deve ser mayor a 0", " ", 0);
             }
 
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "A quantidade deve ser um valor numerico", "Erro!", 0);
+            JOptionPane.showMessageDialog(null, "La cantidade debe ser um valor numerico", "Error!", 0);
             return;
         } catch (NullPointerException e) {
             return;
@@ -162,13 +162,13 @@ public class Dashboard extends javax.swing.JFrame {
     private void retirarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_retirarMouseClicked
 
         if (this.saldo_ <= 0) {
-            JOptionPane.showMessageDialog(null, "Saldo mínimo ya alcanzado", "Erro!", 0);
+            JOptionPane.showMessageDialog(null, "Saldo mínimo ya alcanzado", "Error!", 0);
             return;
         }
         try {
-            Float cant = Float.parseFloat(JOptionPane.showInputDialog("Insira a quantidade a retirar"));
+            Float cant = Float.parseFloat(JOptionPane.showInputDialog("Indique la cantidade a retirar"));
             if (this.saldo_ - cant < 0) {
-                JOptionPane.showMessageDialog(null, "Saldo insuficiente", "Erro!", 0);
+                JOptionPane.showMessageDialog(null, "Saldo insuficiente", "Error!", 0);
                 return;
             }
             if (cant > 0) {
@@ -177,11 +177,11 @@ public class Dashboard extends javax.swing.JFrame {
                     setSaldo(this.saldo_ - cant);
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "o valor deve ser maior a 0", "Erro!", 0);
+                JOptionPane.showMessageDialog(null, "El valor debe ser mayor a 0", "Error!", 0);
             }
 
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "A quantidade deve ser um valor numerico", "Erro!", 0);
+            JOptionPane.showMessageDialog(null, "La cantidade debe ser um valor numerico", "Error!", 0);
             return;
         } catch (NullPointerException e) {
             return;
@@ -195,7 +195,7 @@ public class Dashboard extends javax.swing.JFrame {
         String[] ops = {"Si", "No"};
         int confirm = JOptionPane.showInternalOptionDialog(null, "Seguro que quieres salir?", "Confirmar", 0, 3, null, ops, "No");
         if (confirm == 0) {
-            Inicio.main();
+            Main.main(null);
             this.setVisible(false);
         } else {
             return;
@@ -205,7 +205,7 @@ public class Dashboard extends javax.swing.JFrame {
     private void tranferirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tranferirMouseClicked
 
         if (this.saldo_ <= 0) {
-            JOptionPane.showMessageDialog(null, "Saldo mínimo ya alcanzado", "Erro!", 0);
+            JOptionPane.showMessageDialog(null, "Saldo mínimo ya alcanzado", "Error!", 0);
             return;
         }
 
@@ -253,7 +253,7 @@ public class Dashboard extends javax.swing.JFrame {
 
     public void setNome(String nome) {
         this.nome_ = nome;
-        this.nome.setText("Nome do titular: " + nome_);
+        this.nome.setText("Nombre del titular: " + nome_);
     }
 
     public void setSaldo(Float saldo) {

@@ -1,14 +1,18 @@
 package querymysql.contas;
 
+import java.awt.Color;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Login extends javax.swing.JPanel {
 
+    Color gris = new Color(204, 204, 204);
+
     public Login() {
         initComponents();
         this.emailErr.setVisible(false);
         this.senhaErr.setVisible(false);
+        this.email.setForeground(gris);
     }
 
     @SuppressWarnings("unchecked")
@@ -28,6 +32,7 @@ public class Login extends javax.swing.JPanel {
 
         email.setBackground(new java.awt.Color(255, 255, 255));
         email.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        email.setForeground(new java.awt.Color(204, 204, 204));
         email.setText("abner@gmail.com");
         email.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -42,6 +47,7 @@ public class Login extends javax.swing.JPanel {
         senhaLabel.setText("Senha");
 
         senha.setBackground(new java.awt.Color(255, 255, 255));
+        senha.setForeground(new java.awt.Color(204, 204, 204));
         senha.setText("                   ");
         senha.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         senha.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -103,11 +109,13 @@ public class Login extends javax.swing.JPanel {
 
     private void emailFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_emailFocusGained
         this.emailErr.setVisible(false);
+        this.email.setForeground(Color.BLACK);
         this.email.setText("");
     }//GEN-LAST:event_emailFocusGained
 
     private void senhaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_senhaFocusGained
         this.senhaErr.setVisible(false);
+        this.senha.setForeground(Color.BLACK);
         this.senha.setText("");
     }//GEN-LAST:event_senhaFocusGained
 
@@ -125,10 +133,11 @@ public class Login extends javax.swing.JPanel {
 
     public Boolean checkEmail() {
         String email = this.email.getText();
-        
-        if (email.isBlank()) {
+        if (email.isBlank() || this.email.getForeground() == gris) {
             this.emailErr.setVisible(true);
-            this.emailErr.setText("Campo obrigatorio");
+            this.emailErr.setText("Campo obligatorio");
+            this.email.setText("abner@gmail.com");
+            this.email.setForeground(gris);
             return false;
         }
 
@@ -148,7 +157,9 @@ public class Login extends javax.swing.JPanel {
 
         if (senha.isBlank()) {
             this.senhaErr.setVisible(true);
-            this.senhaErr.setText("La contraseña no puede estar vacia");
+            this.senha.setText("           ");
+            this.senha.setForeground(gris);
+            this.senhaErr.setText("Campo obligatorio");
             return false;
         }
         return true;

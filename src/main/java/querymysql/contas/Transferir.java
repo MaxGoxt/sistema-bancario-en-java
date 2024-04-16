@@ -147,12 +147,12 @@ public class Transferir extends javax.swing.JFrame {
             }
 
             if (this.saldo - cantidad < 0) {
-                JOptionPane.showMessageDialog(null, "Saldo insuficiente", "Erro!", 0);
+                JOptionPane.showMessageDialog(null, "Saldo insuficiente", "Error!", 0);
                 return;
             }
 
             if (dash.getEmail().equals(this.email.getText())) {
-                JOptionPane.showMessageDialog(null, "Operacion no permitida", "Erro!", 0);
+                JOptionPane.showMessageDialog(null, "Operación no permitida", "Error!", 0);
                 return;
             }
 
@@ -163,14 +163,14 @@ public class Transferir extends javax.swing.JFrame {
                 this.dash.setSaldo(this.saldo);
                 this.setVisible(false);
             } else {
-                JOptionPane.showMessageDialog(null, "Ocurrió un problema", "Erro!", 0);
+                JOptionPane.showMessageDialog(null, "Ocurrió un problema", "Error!", 0);
             }
         } catch (NumberFormatException e) {
             this.cantErr.setText("La cantidad de tener valor numerico");
             this.cantErr.setVisible(true);
         } catch (Throwable e) {
             System.out.println(e);
-            JOptionPane.showMessageDialog(null, "Ocurrió un problema", "Erro!", 0);
+            JOptionPane.showMessageDialog(null, "Ocurrió un problema", "Error!", 0);
         }
     }//GEN-LAST:event_ConfirmMouseClicked
 

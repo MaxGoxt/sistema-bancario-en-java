@@ -139,7 +139,7 @@ public class SignUp extends javax.swing.JPanel {
         
         if (email.isBlank()) {
             this.emailErr.setVisible(true);
-            this.emailErr.setText("Campo obrigatorio");
+            this.emailErr.setText("Campo obligatorio");
             return false;
         }
 
@@ -160,7 +160,7 @@ public class SignUp extends javax.swing.JPanel {
 
         if (nome.isBlank()) {
             this.nomeErr.setVisible(true);
-            this.nomeErr.setText("Campo obrigatorio");
+            this.nomeErr.setText("Campo obligatorio");
             return false;
         }
         return true;
@@ -171,7 +171,7 @@ public class SignUp extends javax.swing.JPanel {
 
         if (senha.isBlank()) {
             this.senhaErr.setVisible(true);
-            this.senhaErr.setText("Campo obrigatorio");
+            this.senhaErr.setText("Campo obligatorio");
             return false;
         }
         return true;
@@ -182,7 +182,7 @@ public class SignUp extends javax.swing.JPanel {
 
         if (snome.isBlank()) {
             this.sobreNErr.setVisible(true);
-            this.sobreNErr.setText("Campo obrigatorio");
+            this.sobreNErr.setText("Campo obligatorio");
             return false;
         }
         return true;
