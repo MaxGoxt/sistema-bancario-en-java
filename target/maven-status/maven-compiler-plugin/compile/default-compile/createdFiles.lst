@@ -11,9 +11,12 @@ querymysql\contas\Dashboard.class
 querymysql\contas\Main$3.class
 querymysql\contas\SignUp$4.class
 querymysql\contas\Transferir$5.class
+querymysql\contas\Conta.class
+querymysql\contas\DataBase.class
 querymysql\contas\Dashboard$1.class
 querymysql\contas\SignUp$1.class
 querymysql\contas\Dashboard$3.class
+querymysql\contas\Dashboard$6.class
 querymysql\contas\SignUp$3.class
 querymysql\contas\Transferir$2.class
 querymysql\contas\Main$2.class

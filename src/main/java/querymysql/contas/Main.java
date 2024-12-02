@@ -183,14 +183,14 @@ public class Main extends javax.swing.JFrame {
         this.ok = lg.checkEmail() && lg.checkSenha();
 
         if (this.ok) {
-            HashMap<String, String> data = SQLService.getCC(lg.getEmail(), String.valueOf(lg.getSenha()));
+            Conta data = DataBase.getCC(lg.getEmail(), String.valueOf(lg.getSenha()));
 
             while (data.isEmpty()) {
                 JOptionPane.showMessageDialog(null, "No se encontró esta cuenta", "Problema", 2);
                 return;
             }
             this.setVisible(false);
-            Dashboard inicio = new Dashboard(Integer.parseInt(data.get("id")), data.get("nome") + " " + data.get("sobrenome"), data.get("email"), Float.parseFloat(data.get("saldo")), data.get("senha"), data.get("data"));
+            Dashboard inicio = new Dashboard(data);
             inicio.main();
         }
     }//GEN-LAST:event_iniciarSsMouseClicked
@@ -208,9 +208,9 @@ public class Main extends javax.swing.JFrame {
 
         if (this.ok) {
             try {
-                String created = SQLService.createCC(su.getNome(), su.getSobrenome(), su.getEmail(), su.getSenha());
+                Conta created = DataBase.createCount(su.getNome(), su.getSobrenome(), su.getEmail(), su.getSenha());
                 System.out.println(created);
-                if (created == "ok") {
+                if (!created.isEmpty()) {
                     JOptionPane.showMessageDialog(null, "Cuenta creada", "Felicidades!", 0, null);
                     showLG();
                 } else {

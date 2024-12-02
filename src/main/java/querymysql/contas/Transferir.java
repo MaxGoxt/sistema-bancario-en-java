@@ -7,10 +7,10 @@ import javax.swing.JOptionPane;
 public class Transferir extends javax.swing.JFrame {
 
     private Integer id;
-    private Float saldo;
+    private Double saldo;
     private Dashboard dash;
 
-    public Transferir(Integer id, Float saldo, Dashboard dash) {
+    public Transferir(Integer id, Double saldo, Dashboard dash) {
         initComponents();
         this.id = id;
         this.saldo = saldo;
@@ -141,7 +141,7 @@ public class Transferir extends javax.swing.JFrame {
 
     private void ConfirmMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ConfirmMouseClicked
         try {
-            Float cantidad = Float.parseFloat(this.cant.getText());
+            Double cantidad = Double.parseDouble(this.cant.getText());
 
             if (!this.checkEmail()) {
                 return;
@@ -157,7 +157,7 @@ public class Transferir extends javax.swing.JFrame {
                 return;
             }
 
-            String res = SQLService.tranferir(id, email.getText(), cantidad);
+            String res = DataBase.tranferir(id, email.getText(), cantidad);
             if (res == "ok") {
                 JOptionPane.showMessageDialog(null, "Transferencia realizada", " ", 2);
                 this.saldo -= cantidad;
@@ -234,7 +234,7 @@ public class Transferir extends javax.swing.JFrame {
         return true;
     }
 
-    public Float getCurrSaldo() {
+    public Double getCurrSaldo() {
         return this.saldo;
     }
 

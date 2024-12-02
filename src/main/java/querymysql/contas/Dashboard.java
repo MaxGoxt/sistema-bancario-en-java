@@ -2,23 +2,27 @@ package querymysql.contas;
 
 import javax.swing.JOptionPane;
 
-public class Dashboard extends javax.swing.JFrame {
-
-    private Integer id;
-    private String nome_;
-    private Float saldo_;
-    private String date_;
+public class Dashboard extends javax.swing.JFrame{
+    
+    Conta conta;
     private String email_;
+    private Double saldo_;
+    private String nome_;
+    private String sobreNome_;
+    private String date_;
     private String senha_;
+    private Integer id;
 
-    public Dashboard(Integer id, String nome, String email, Float saldo, String senha, String date) {
+    public Dashboard(Conta conta) {
+        this.conta = conta;
+        
         initComponents();
-        setNome(nome);
-        setEmail(email);
-        setSaldo(saldo);
-        setSenha(senha);
-        setDate(date);
-        setId(id);
+        setNome(conta.nome + " " + conta.sobreNome);
+        setEmail(conta.email);
+        setSaldo(conta.saldo);
+        setSenha(conta.senha);
+        setDate(conta.data);
+        setId(conta.id);
         this.setLocationRelativeTo(null);
     }
 
@@ -36,6 +40,8 @@ public class Dashboard extends javax.swing.JFrame {
         retirar = new javax.swing.JButton();
         cerrarSs = new javax.swing.JButton();
         tranferir = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -106,7 +112,7 @@ public class Dashboard extends javax.swing.JFrame {
                 cerrarSsMouseClicked(evt);
             }
         });
-        bg.add(cerrarSs, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 430, 180, 40));
+        bg.add(cerrarSs, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 350, 180, 40));
 
         tranferir.setBackground(new java.awt.Color(0, 153, 255));
         tranferir.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
@@ -119,6 +125,20 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
         bg.add(tranferir, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 410, 460, 40));
+
+        jButton1.setText("jButton1");
+        bg.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        jButton2.setBackground(new java.awt.Color(255, 0, 0));
+        jButton2.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 18)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setText("Eliminar Cuenta");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
+        bg.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 410, 180, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -139,7 +159,7 @@ public class Dashboard extends javax.swing.JFrame {
         try {
             Float cant = Float.parseFloat(JOptionPane.showInputDialog("Indique la cantidade a depositar"));
             if (cant > 0) {
-                String res = SQLService.setSaldo(this.id, this.saldo_ + cant);
+                String res = DataBase.setSaldo(this.id, this.saldo_ + cant);
                 if (res == "ok") {
                     setSaldo(this.saldo_ + cant);
                 }
@@ -172,7 +192,7 @@ public class Dashboard extends javax.swing.JFrame {
                 return;
             }
             if (cant > 0) {
-                String res = SQLService.setSaldo(this.id, this.saldo_ - cant);
+                String res = DataBase.setSaldo(this.id, this.saldo_ - cant);
                 if (res == "ok") {
                     setSaldo(this.saldo_ - cant);
                 }
@@ -208,9 +228,23 @@ public class Dashboard extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Saldo mínimo ya alcanzado", "Error!", 0);
             return;
         }
+        
+        
 
-        Transferir t = new Transferir(this.id, this.saldo_, this);
+        new Transferir(this.id, this.saldo_, this);
     }//GEN-LAST:event_tranferirMouseClicked
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        String[] ops = {"Si", "No"};
+        int confirm = JOptionPane.showInternalOptionDialog(null, "Seguro que quieres eliminar tu cuenta?", "Confirmar", 0, 3, null, ops, "No");
+        if (confirm == 0) {
+            DataBase.deleteCount(this.id);
+            Main.main(null);
+            this.setVisible(false);
+        } else {
+            return;
+        }
+    }//GEN-LAST:event_jButton2MouseClicked
 
     public void main() {
 
@@ -237,7 +271,7 @@ public class Dashboard extends javax.swing.JFrame {
         //</editor-fold>
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Dashboard(id, nome_, email_, saldo_, senha_, date_).setVisible(true);
+                new Dashboard(new Conta(id, nome_, sobreNome_, saldo_, senha_, email_, date_)).setVisible(true);
             }
         });
     }
@@ -256,7 +290,7 @@ public class Dashboard extends javax.swing.JFrame {
         this.nome.setText("Nombre del titular: " + nome_);
     }
 
-    public void setSaldo(Float saldo) {
+    public void setSaldo(Double saldo) {
         this.saldo_ = saldo;
         this.saldo.setText("Saldo disponivel: " + saldo_.toString());
     }
@@ -281,6 +315,8 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel data;
     private javax.swing.JButton depositar;
     private javax.swing.JLabel email;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel nome;
     private javax.swing.JButton retirar;
     private javax.swing.JLabel saldo;
