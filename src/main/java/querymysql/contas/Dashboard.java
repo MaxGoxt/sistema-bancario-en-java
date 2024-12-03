@@ -157,9 +157,9 @@ public class Dashboard extends javax.swing.JFrame{
     private void depositarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_depositarMouseClicked
         // TODO add your handling code here:
         try {
-            Float cant = Float.parseFloat(JOptionPane.showInputDialog("Indique la cantidade a depositar"));
+            Double cant = Double.parseDouble(JOptionPane.showInputDialog("Indique la cantidade a depositar"));
             if (cant > 0) {
-                String res = DataBase.setSaldo(this.id, this.saldo_ + cant);
+                String res = DataBase.setSaldo(this.id, cant);
                 if (res == "ok") {
                     setSaldo(this.saldo_ + cant);
                 }
