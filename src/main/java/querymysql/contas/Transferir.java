@@ -157,7 +157,7 @@ public class Transferir extends javax.swing.JFrame {
                 return;
             }
 
-            String res = DataBase.tranferir(id, email.getText(), cantidad);
+            String res = DataBase.tranferir(this.id, email.getText(), cantidad);
             if (res == "ok") {
                 JOptionPane.showMessageDialog(null, "Transferencia realizada", " ", 2);
                 this.saldo -= cantidad;

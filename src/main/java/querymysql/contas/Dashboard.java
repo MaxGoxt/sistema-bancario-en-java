@@ -159,7 +159,7 @@ public class Dashboard extends javax.swing.JFrame{
         try {
             Double cant = Double.parseDouble(JOptionPane.showInputDialog("Indique la cantidade a depositar"));
             if (cant > 0) {
-                String res = DataBase.setSaldo(this.id, cant);
+                String res = DataBase.setSaldo(this.id, this.saldo_ + cant);
                 if (res == "ok") {
                     setSaldo(this.saldo_ + cant);
                 }
@@ -186,7 +186,7 @@ public class Dashboard extends javax.swing.JFrame{
             return;
         }
         try {
-            Float cant = Float.parseFloat(JOptionPane.showInputDialog("Indique la cantidade a retirar"));
+            Double cant = Double.parseDouble(JOptionPane.showInputDialog("Indique la cantidade a retirar"));
             if (this.saldo_ - cant < 0) {
                 JOptionPane.showMessageDialog(null, "Saldo insuficiente", "Error!", 0);
                 return;
