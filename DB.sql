@@ -67,9 +67,9 @@ Delimiter ;
 Delimiter $$
 CREATE PROCEDURE SET_SALDO(IN inId INT, IN mount FLOAT(10,2))
 BEGIN
-IF mount > 0 THEN
-UPDATE conta SET saldo = saldo + mount WHERE id = inId;
-END IF;
+
+UPDATE conta SET saldo = mount WHERE id = inId;
+
 END$$
 Delimiter ;
 
